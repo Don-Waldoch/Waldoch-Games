@@ -27,8 +27,13 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 | 0 |   |   |   |   |   |   |   |   |
 | 1 |   |   |   |   |   |   |   |   |
 | 2 |   |   |   |   |   |   |   |   |
-| 3 |   |   |   |   |   |   |   |   |
-| 4 |   |   |   |   |   |   |   |   |
+| 3 |   |   |   | L | D |   |   |   |
+| 4 |   |   |   | D | L |   |   |   |
 | 5 |   |   |   |   |   |   |   |   |
 | 6 |   |   |   |   |   |   |   |   |
 | 7 |   |   |   |   |   |   |   |   |
+
+#### Implementation Plan
+- The grid will be stored as a 2 dimensional array
+- The array values will contain the color of the disc at that grid spot
+- e.g.: grid[0][0] = 'Light',  grid[0][1] = 'Dark'
