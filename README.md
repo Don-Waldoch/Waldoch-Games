@@ -18,7 +18,7 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 1. Prompt the users for names/colors.
 2. Build an 8x8 playing board.
 3. Place the initial 4 discs (2 Light, 2 Dark).
-4. Create click events for users to place discs. Check that moves are legal.
+4. Event Listeners for users to place discs. Check that moves are legal.
 5. Flip surrounded opponent discs after each move.
 6. Detect end of game (filled board, or no remaining legal moves).
 7. Tally up the scores and display the results
