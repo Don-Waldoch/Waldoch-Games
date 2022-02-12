@@ -20,6 +20,11 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 - 1-Player vs Computer. Add strategy to the engine.
 - Animate flips
 
+### Psuedo Code
+* Prompt the users for names/colors
+* Build an 8x8 playing board
+* Place the initial 4 discs
+
 #### Grid Row/Column Coordinate System
 
 |   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
@@ -36,4 +41,4 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 #### Implementation Plan
 - The grid will be stored as a 2 dimensional array
 - The array values will contain the color of the disc at that grid spot
-- e.g.: grid[0][0] = 'Light',  grid[0][1] = 'Dark'
+- e.g.: grid[3][3] = 'Light',  grid[3][4] = 'Dark'
