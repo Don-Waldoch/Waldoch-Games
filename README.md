@@ -16,11 +16,11 @@ Detect end of game (no remaining legal moves)
 Tally & Display results
 Make flips async so users can better see results of moves.
 
-### Strtch Goals
+### Stretch Goals
 1-Player vs Computer. Add strategy to the engine.
 Animate flips
 
-#### Grid Coordinate System
+#### Grid Row/Column Coordinate System
 
 |   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
 | - | - | - | - | - | - | - | - | - |
