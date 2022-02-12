@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////
 
 window.onload = async () => {
-	console.log("JavaScript Loaded")
+	console.log("JavaScript Loaded");
 	Othello.newGame();
 	console.table(Othello.grid);
 }
@@ -10,6 +10,8 @@ window.onload = async () => {
 
 const Othello = {
 	grid: [],
+	playerNameLight: '',
+	playerNameDark: '',
 
 	newGame() {
 		this.grid = [];
