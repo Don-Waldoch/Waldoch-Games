@@ -7,23 +7,21 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 
 ### MVP
 - 2-Player version.
-- Engine needs to implement rules, not strategy.
-- 8x8 Array of green squares
-- Light & dark discs
-- Detect legal/Illegal moves
-- Implement flipping logic
-- Detect end of game (no remaining legal moves)
-- Tally & Display results
-- Make flips async so users can better see results of moves.
+- Engine needed to implement rules, not strategy.
 
 ### Stretch Goals
-- 1-Player vs Computer. Add strategy to the engine.
+- 1-Player vs CPU. Add AI strategy to the engine.
 - Animate flips
+- Make flips async so users can better see results of moves.
 
 ### Psuedo Code
-* Prompt the users for names/colors
-* Build an 8x8 playing board
-* Place the initial 4 discs
+1. Prompt the users for names/colors.
+2. Build an 8x8 playing board.
+3. Place the initial 4 discs (2 Light, 2 Dark).
+4. Create click events for users to place discs. Check that moves are legal.
+5. Flip surrounded opponent discs after each move.
+6. Detect end of game (filled board, or no remaining legal moves).
+7. Tally up the scores and display the results
 
 #### Grid Row/Column Coordinate System
 
@@ -42,3 +40,5 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 - The grid will be stored as a 2 dimensional array
 - The array values will contain the color of the disc at that grid spot
 - e.g.: grid[3][3] = 'Light',  grid[3][4] = 'Dark'
+- CSS Discs (light & dark)
+- CSS Disc animation
