@@ -36,7 +36,7 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 | 6 |   |   |   |   |   |   |   |   |
 | 7 |   |   |   |   |   |   |   |   |
 
-#### Implementation Plan
+#### Implementation Details
 - The grid will be stored as a 2 dimensional array
 - The array values will contain the color of the disc at that grid spot (e.g.: grid[3][3] = 'Light',  grid[3][4] = 'Dark')
 - CSS Discs (light & dark)
