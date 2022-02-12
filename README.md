@@ -38,7 +38,6 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 
 #### Implementation Plan
 - The grid will be stored as a 2 dimensional array
-- The array values will contain the color of the disc at that grid spot
-- e.g.: grid[3][3] = 'Light',  grid[3][4] = 'Dark'
+- The array values will contain the color of the disc at that grid spot (e.g.: grid[3][3] = 'Light',  grid[3][4] = 'Dark')
 - CSS Discs (light & dark)
 - CSS Disc animation
