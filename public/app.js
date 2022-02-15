@@ -20,16 +20,14 @@ const Othello = {
 		let board = document.querySelector('.board');
 		for (let row=0; row<this.numRows; row++) {
 			for (let col=0; col<this.numCols; col++) {
-				let id = `S${row}:${col}`
+				let id = `S${row}:${col}`;
 				let square = document.createElement('div');
-				square.setAttribute('id', id)
+				square.setAttribute('id', id);
 				square.setAttribute('class', "square");
-				square.addEventListener('click', clickHandler);
 
-				id = `I${row}:${col}`
+				id = `I${row}:${col}`;
 				let image = document.createElement('img');
-				image.setAttribute('id', id)
-				image.setAttribute('src', "./assets/Clear.png");
+				image.setAttribute('id', id);
 
 				square.append(image);
 				board.append(square);
@@ -68,6 +66,9 @@ const Othello = {
 					    image.setAttribute('src', "./assets/Dark.png");
 						square.removeEventListener('click', clickHandler);
 					    break;
+					default :
+					    image.setAttribute('src', "./assets/Clear.png");
+					    square.addEventListener('click', clickHandler);
 				}
 			}
 		}
