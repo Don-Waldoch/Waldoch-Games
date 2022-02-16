@@ -28,7 +28,7 @@
 //
 /////////////////////////////////////////////////////////////////////
 
-let DEBUG = true;
+var DEBUG = true;
 
 window.onload = async () => {
 	Othello.newGame();
