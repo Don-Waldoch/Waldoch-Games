@@ -32,30 +32,59 @@ var DEBUG = true;
 
 window.onload = async () => {
 	Othello.newGame();
-	if (DEBUG) console.table(Othello.grid);
+	if (DEBUG) {
+		//console.table(Othello.discs);
+		//Othello.compass.forEach(direction => console.log(direction));
+	}
 }
 
 /////////////////////////////////////////////////////////////////////
 
+class direction {
+	constructor(name, rowIncr, colIncr) {
+		this.name = name;
+		this.rowIncr = rowIncr;
+		this.colIncr = colIncr;
+	}
+}
+
 const Othello = {
-	grid: [],
+	compass: [],
+	discs: [],
 	numCols: 8,
 	numRows: 8,
 
 	newGame() {
+		// Create the DOM elements needed for the game board
 		this.newBoardDOM();
-		this.grid = [];
+
+		// Create a compass array of directions to look for legal moves
+		this.compass = [];      // (name, rowIncr, colIncr)
+		this.compass.push(new direction('N',  -1,  0));
+		this.compass.push(new direction('NE', -1,  1));
+		this.compass.push(new direction('E',   0,  1));
+		this.compass.push(new direction('SE',  1,  1));
+		this.compass.push(new direction('S',   1,  0));
+		this.compass.push(new direction('SW',  1, -1));
+		this.compass.push(new direction('W',   0, -1));
+		this.compass.push(new direction('NW', -1, -1));
+
+		// Create an array to track the grid location and color of all placed discs
+		this.discs = [];
 		for (let row=0; row<this.numRows; row++) {
-			this.grid.push([]); // Add a new row
+			this.discs.push([]); // Add a new row
 			for (let col=0; col<this.numCols; col++) {
-				this.grid[row].push(null); // Add a new null (disc-less) column to the row
+				this.discs[row].push(null); // Add a new null (disc-less) column to the row
 			}
 		}
+
 		// Place the first 4 discs needed for a new game
-		this.grid[3][3] = "Light";
-		this.grid[3][4] = "Dark";
-		this.grid[4][3] = "Dark";
-		this.grid[4][4] = "Light";
+		this.discs[3][3] = "Light";
+		this.discs[3][4] = "Dark";
+		this.discs[4][3] = "Dark";
+		this.discs[4][4] = "Light";
+
+		// Display all of the placed discs on the game board
 		this.displayDiscs();
 	},
 
@@ -82,13 +111,27 @@ const Othello = {
 			for (let col=0; col<this.numCols; col++) {
 				let image  = document.getElementById(`I${row}:${col}`);
 				let square = document.getElementById(`S${row}:${col}`);
-			    if (this.grid[row][col] !== null) {
-					image.setAttribute('src', `./assets/${this.grid[row][col]}.png`);
+			    if (this.discs[row][col] !== null) {
+					image.setAttribute('src', `./assets/${this.discs[row][col]}.png`);
 					square.removeEventListener('click', clickHandler);
 				}
 			}
 		}
 	},
+
+	legalMove(player, testRow, testCol) {
+		let opponent = (player === 'Dark') ? 'Light' : 'Dark';
+		this.compass.forEach(function(direction) {
+			console.log(`${direction.name} from [${testRow}][${testCol}]`)
+			let row = testRow + direction.rowIncr;
+			let col = testCol + direction.colIncr;
+			while ((Othello.discs[row] !== undefined) && (Othello.discs[row][col] !== undefined)) {
+				console.log(`   Check [${row}][${col}]`)
+				row += direction.rowIncr;
+				col += direction.colIncr;
+			}
+		})
+	}
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -101,10 +144,14 @@ function clickHandler(e) {
 	    let grid = e.target.id.replace(regex,'').split(':');
 	    let row = parseInt(grid[0]);
 	    let col = parseInt(grid[1]);
-	    Othello.grid[row][col] = "Grey";
-	    Othello.displayDiscs();
-		if (DEBUG) console.table(Othello.grid);
-		if (DEBUG) console.log("Clicked square " + grid)
+		if (Othello.legalMove("Dark", row, col)) {
+			Othello.discs[row][col] = "Grey";
+			Othello.displayDiscs();
+		}
+		if (DEBUG) {
+			//console.table(Othello.grid);
+		    //console.log("Clicked square " + grid);
+		}
 	}
 }
 
