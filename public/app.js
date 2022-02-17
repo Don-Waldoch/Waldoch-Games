@@ -124,6 +124,7 @@ const Othello = {
 				}
 			}
 		}
+		if (DEBUG) console.table(this.discs);
 	},
 }
 
@@ -144,16 +145,13 @@ function clickHandler(e) {
 			});
 			Othello.displayDiscs();
 		}
-		if (DEBUG) {
-			//console.table(Othello.grid);
-		    //console.log("Clicked square " + grid);
-		}
+		//if (DEBUG) console.log("Clicked square " + grid);
 	}
 }
 
 function legalMove(player, discRow, discCol) {
-	let opponent = (player === 'Dark') ? 'Light' : 'Dark';
 	let status = false;
+	let opponent = (player === 'Dark') ? 'Light' : 'Dark';
 	Othello.flips = [];
 	Othello.compass.forEach(function(direction) {
 		//console.log(`${direction.name} from [${discRow}][${discCol}]`);
@@ -175,6 +173,7 @@ function legalMove(player, discRow, discCol) {
 			col += direction.colIncr;
 		}
 	});
+
 	return(status);
 }
 
