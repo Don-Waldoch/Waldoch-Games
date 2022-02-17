@@ -51,6 +51,7 @@ class direction {
 const Othello = {
 	compass: [],
 	discs: [],
+	flips: [],
 	numCols: 8,
 	numRows: 8,
 
@@ -80,8 +81,8 @@ const Othello = {
 
 		// Place the first 4 discs needed for a new game
 		this.discs[3][3] = "Light";
-		this.discs[3][4] = "Dark";
-		this.discs[4][3] = "Dark";
+		this.discs[3][4] = 'Dark';
+		this.discs[4][3] = 'Dark';
 		this.discs[4][4] = "Light";
 
 		// Display all of the placed discs on the game board
@@ -118,20 +119,6 @@ const Othello = {
 			}
 		}
 	},
-
-	legalMove(player, testRow, testCol) {
-		let opponent = (player === 'Dark') ? 'Light' : 'Dark';
-		this.compass.forEach(function(direction) {
-			console.log(`${direction.name} from [${testRow}][${testCol}]`)
-			let row = testRow + direction.rowIncr;
-			let col = testCol + direction.colIncr;
-			while ((Othello.discs[row] !== undefined) && (Othello.discs[row][col] !== undefined)) {
-				console.log(`   Check [${row}][${col}]`)
-				row += direction.rowIncr;
-				col += direction.colIncr;
-			}
-		})
-	}
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -144,8 +131,11 @@ function clickHandler(e) {
 	    let grid = e.target.id.replace(regex,'').split(':');
 	    let row = parseInt(grid[0]);
 	    let col = parseInt(grid[1]);
-		if (Othello.legalMove("Dark", row, col)) {
-			Othello.discs[row][col] = "Grey";
+		if (legalMove('Dark', row, col)) {
+			Othello.discs[row][col] = 'Dark';
+			Othello.flips.forEach(function(disc) {
+				Othello.discs[disc[0]][disc[1]] = 'Grey';
+			});
 			Othello.displayDiscs();
 		}
 		if (DEBUG) {
@@ -153,6 +143,34 @@ function clickHandler(e) {
 		    //console.log("Clicked square " + grid);
 		}
 	}
+}
+
+function legalMove(player, discRow, discCol) {
+	let opponent = (player === 'Dark') ? 'Light' : 'Dark';
+	let status = false;
+	Othello.flips = [];
+	Othello.compass.forEach(function(direction) {
+		//console.log(`${direction.name} from [${discRow}][${discCol}]`);
+		let row = discRow + direction.rowIncr;
+		let col = discCol + direction.colIncr;
+		let potentialFlips = [];
+		while ((Othello.discs[row] !== undefined) && (Othello.discs[row][col] !== undefined)) {
+			if (Othello.discs[row][col] === null) break;
+			if (Othello.discs[row][col] === opponent) potentialFlips.push([row, col]);
+			if (Othello.discs[row][col] === player) {
+				if (potentialFlips.length) {
+					//console.log(potentialFlips);
+					Othello.flips.push.apply(Othello.flips, potentialFlips);
+					status = true;
+				}
+				break;
+			}
+			//console.log(`   Check [${row}][${col}]`);
+			row += direction.rowIncr;
+			col += direction.colIncr;
+		}
+	});
+	return(status);
 }
 
 /////////////////////////////////////////////////////////////////////
