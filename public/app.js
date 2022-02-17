@@ -38,6 +38,11 @@ window.onload = async () => {
 	}
 }
 
+// https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
+Array.prototype.extend = function (other_array) {
+    other_array.forEach(function(v) {this.push(v)}, this);
+}
+
 /////////////////////////////////////////////////////////////////////
 
 class direction {
@@ -54,6 +59,7 @@ const Othello = {
 	flips: [],
 	numCols: 8,
 	numRows: 8,
+	player: 'Dark',
 
 	newGame() {
 		// Create the DOM elements needed for the game board
@@ -159,8 +165,7 @@ function legalMove(player, discRow, discCol) {
 			if (Othello.discs[row][col] === opponent) potentialFlips.push([row, col]);
 			if (Othello.discs[row][col] === player) {
 				if (potentialFlips.length) {
-					//console.log(potentialFlips);
-					Othello.flips.push.apply(Othello.flips, potentialFlips);
+					Othello.flips.extend(potentialFlips);
 					status = true;
 				}
 				break;
