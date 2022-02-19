@@ -93,6 +93,9 @@ const Othello = {
 		this.discs[4][3] = 'Dark';
 		this.discs[4][4] = "Light";
 
+		this.player = 'Dark';
+		this.opponent = 'Light';
+
 		// Display all of the placed discs on the game board
 		this.displayDiscs();
 	},
