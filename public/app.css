@@ -1,4 +1,5 @@
 /* https://www.w3schools.com/css/css_grid.asp */
+/* https://www.w3schools.com/howto/howto_css_flip_card.asp */
 
 .top {
     display: flex;
@@ -9,7 +10,7 @@
 .board {
     display: grid;
     grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px;
-    grid-template-rows: 60px 60px 60px 60px 60px 60px 60px 60px;
+    grid-template-rows:    60px 60px 60px 60px 60px 60px 60px 60px;
     border: 1px solid black;
 }
 
