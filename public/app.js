@@ -126,6 +126,8 @@ const Othello = {
 				}
 			}
 		}
+		console.log(this.moves);
+		console.log(this.moves.length);
 		if (this.moves.length === 0) return false;
 		return true;
 	},
@@ -141,12 +143,40 @@ const Othello = {
 				}
 			}
 		}
+		let turnDisc = document.getElementById('turnDisc');
+		let turnName = document.getElementById('turnName');
+		turnDisc.setAttribute('src', `./assets/${this.player}.png`);
+		turnName.innerHTML = `${this.player}'s Turn`;
 		if (DEBUG) console.table(this.discs);
 	},
 
 	changePlayer() {
 		this.player   = (this.player === 'Dark') ? 'Light' : 'Dark';
 		this.opponent = (this.player === 'Dark') ? 'Light' : 'Dark';
+		Othello.displayDiscs();
+	},
+
+	declareWinner() {
+		let darkTotal = 0
+		let lightTotal = 0;
+		let turnDisc = document.getElementById('turnDisc');
+		let turnName = document.getElementById('turnName');
+		for (let row=0; row<this.numRows; row++) {
+			for (let col=0; col<this.numCols; col++) {
+				if (this.discs[row][col] === 'Dark') darkTotal++;
+				if (this.discs[row][col] === 'Light') lightTotal++;
+			}
+		}
+		if (darkTotal > lightTotal) {
+			turnDisc.setAttribute('src', './assets/Dark.png');
+			turnName.innerHTML = `Dark Wins ${darkTotal} to ${lightTotal} !!!`;
+		} else if (darkTotal < lightTotal) {
+			turnDisc.setAttribute('src', './assets/Light.png');
+			turnName.innerHTML = `Light Wins ${lightTotal} to ${darkTotal} !!!`;
+		} else {
+			turnDisc.setAttribute('src', '');
+			turnName.innerHTML = `Tie Game at ${lightTotal} apiece !!!`;
+		}
 	}
 }
 
@@ -165,12 +195,13 @@ function clickHandler(e) {
 			Othello.flips.forEach(function(disc) {
 				Othello.discs[disc[0]][disc[1]] = Othello.player;
 			});
-			Othello.displayDiscs();
+
 			Othello.changePlayer();
 			if (Othello.availableMoves()) return;
 			Othello.changePlayer();
 			if (Othello.availableMoves()) return;
-			// Game is over if we get here!!
+
+			Othello.declareWinner();
 		}
 		//if (DEBUG) console.log("Clicked square " + grid);
 	}

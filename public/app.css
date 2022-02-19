@@ -15,37 +15,38 @@ body {
     align-items: center;
 }
 
-.player {
+.next {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    gap: 10px;
+    gap: 23px;
     padding-bottom: 10px;
 }
 
-.color {
+.nextDisc {
     width: 60px;
     height: 60px;
     background-color: #29C82C;
-    border: 2px solid black;
+    border: 4px outset #9F0300;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.name {
+.nextName {
     color: #03009F;
 }
+
 .board {
     display: grid;
     grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px;
     grid-template-rows:    60px 60px 60px 60px 60px 60px 60px 60px;
-    border: 1px solid black;
+    border: 10px outset #9F0300;
 }
 
 .square {
-    border: 1px solid black;
+    border: 2px inset #9F0300;
     background-color: #009F03;
     display: flex;
     justify-content: center;
