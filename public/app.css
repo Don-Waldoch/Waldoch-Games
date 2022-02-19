@@ -1,12 +1,42 @@
 /* https://www.w3schools.com/css/css_grid.asp */
 /* https://www.w3schools.com/howto/howto_css_flip_card.asp */
 
+/* https://hexcolor.co/hex/009f03 */
+/* Gree square color triad */
+
+body {
+    background-color: #9FFFFF;
+}
+
 .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.color {
+    width: 60px;
+    height: 60px;
+    background-color: #29C82C;
+    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.name {
+    color: #03009F;
+}
 .board {
     display: grid;
     grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px;
