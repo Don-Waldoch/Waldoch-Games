@@ -2,7 +2,7 @@
 /* https://www.w3schools.com/howto/howto_css_flip_card.asp */
 
 /* https://hexcolor.co/hex/009f03 */
-/* Gree square color triad */
+/* Green square color triad */
 
 body {
     background-color: #9FFFFF;
@@ -13,7 +13,7 @@ img {
 }
 
 #restart {
-    border: 4px outset #9F0300;
+    border: 5px outset #9F0300;
     border-radius: 10px;
     background-color: #39D83C;
     color: #03009F;
@@ -43,7 +43,7 @@ img {
     width: 60px;
     height: 60px;
     background-color: #39D83C;
-    border: 4px outset #9F0300;
+    border: 5px outset #9F0300;
     display: flex;
     justify-content: center;
     align-items: center;

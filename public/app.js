@@ -28,13 +28,13 @@
 //
 /////////////////////////////////////////////////////////////////////
 
-var DEBUG = true;
+var DEBUG = false;
 
 window.onload = async () => {
 	Othello.newGame();
 	if (DEBUG) {
-		//console.table(Othello.discs);
-		//Othello.compass.forEach(direction => console.log(direction));
+		console.table(Othello.discs);
+		Othello.compass.forEach(direction => console.log(direction));
 	}
 }
 
@@ -95,7 +95,6 @@ const Othello = {
 
 		this.player = 'Dark';
 		this.opponent = 'Light';
-		let restart = 0;
 		document.getElementById("restart").innerHTML="Start Over";
 		document.getElementById("restart").style.visibility = 'hidden';
 
@@ -132,8 +131,10 @@ const Othello = {
 				}
 			}
 		}
-		console.log(this.moves);
-		console.log(this.moves.length);
+		if (DEBUG) {
+		    console.log(this.moves);
+		    console.log(this.moves.length);
+		}
 		if (this.moves.length === 0) return false;
 		return true;
 	},
@@ -141,9 +142,9 @@ const Othello = {
 	displayDiscs() {
 		for (let row=0; row<this.numRows; row++) {
 			for (let col=0; col<this.numCols; col++) {
-				let image  = document.getElementById(`I${row}:${col}`);
-				let square = document.getElementById(`S${row}:${col}`);
 			    if (this.discs[row][col] !== null) {
+					let image  = document.getElementById(`I${row}:${col}`);
+					let square = document.getElementById(`S${row}:${col}`);
 					image.setAttribute('src', `./assets/${this.discs[row][col]}.png`);
 					square.removeEventListener('click', clickHandler);
 				}
@@ -170,7 +171,7 @@ const Othello = {
 		let turnName = document.getElementById('turnName');
 		for (let row=0; row<this.numRows; row++) {
 			for (let col=0; col<this.numCols; col++) {
-				if (this.discs[row][col] === 'Dark') darkTotal++;
+				if (this.discs[row][col] === 'Dark')  darkTotal++;
 				if (this.discs[row][col] === 'Light') lightTotal++;
 			}
 		}
@@ -205,13 +206,13 @@ function clickHandler(e) {
 			});
 
 			Othello.changePlayer();
-			if (Othello.availableMoves()) return;
+			if (Othello.availableMoves()) return; // Can the next player move?
 			Othello.changePlayer();
-			if (Othello.availableMoves()) return;
+			if (Othello.availableMoves()) return; // Can the original player move?
 
-			Othello.declareWinner();
+			Othello.declareWinner(); // Nobody can move; Game Over; Declare winner!
 		}
-		//if (DEBUG) console.log("Clicked square " + grid);
+		if (DEBUG) console.log("Clicked square " + grid);
 	}
 }
 
@@ -219,7 +220,7 @@ function legalMove(discRow, discCol) {
 	let status = false;
 	Othello.flips = [];
 	Othello.compass.forEach(function(direction) {
-		//console.log(`${direction.name} from [${discRow}][${discCol}]`);
+		if (DEBUG) console.log(`${direction.name} from [${discRow}][${discCol}]`);
 		let row = discRow + direction.rowIncr;
 		let col = discCol + direction.colIncr;
 		let potentialFlips = [];
@@ -233,7 +234,7 @@ function legalMove(discRow, discCol) {
 				}
 				break;
 			}
-			//console.log(`   Check [${row}][${col}]`);
+			if (DEBUG) console.log(`   Check [${row}][${col}]`);
 			row += direction.rowIncr;
 			col += direction.colIncr;
 		}
