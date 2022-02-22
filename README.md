@@ -1,6 +1,6 @@
 # Waldoch-Games
 
-[Play the Game!](https://don-waldoch.github.io/Waldoch-Games/public/)
+[Play my Othello Game](https://don-waldoch.github.io/Waldoch-Games/public/)
 
 ## Othello
 Web-Based implementation of the Othello board game.
