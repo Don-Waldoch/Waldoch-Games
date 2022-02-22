@@ -164,7 +164,8 @@ const Othello = {
 		let turnDisc = document.getElementById('turnDisc');
 		let turnName = document.getElementById('turnName');
 		turnDisc.setAttribute('src', `./assets/${this.player}.png`);
-		turnName.innerHTML = `${this.player}'s Turn`;
+		// turnName.innerHTML = `${this.player}'s Turn`;
+		turnName.innerHTML = '';
 		if (DEBUG) console.table(this.discs);
 	},
 
