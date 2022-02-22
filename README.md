@@ -13,7 +13,7 @@ Rules of the game: https://en.wikipedia.org/wiki/Reversi
 - 1-Player vs CPU. Add AI strategy to the engine.
 - Animate flips
 - Make flips async so users can better see results of moves.
-- Calculate grid sizes rather than hard coded
+- Calculated grid sizes rather than hard coded
 
 ### Psuedo Code
 1. Prompt the users for names/colors.

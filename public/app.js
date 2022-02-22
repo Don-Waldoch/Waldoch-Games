@@ -95,6 +95,9 @@ const Othello = {
 
 		this.player = 'Dark';
 		this.opponent = 'Light';
+		let restart = 0;
+		document.getElementById("restart").innerHTML="Start Over";
+		document.getElementById("restart").style.visibility = 'hidden';
 
 		// Display all of the placed discs on the game board
 		this.displayDiscs();
@@ -156,6 +159,7 @@ const Othello = {
 	changePlayer() {
 		this.player   = (this.player === 'Dark') ? 'Light' : 'Dark';
 		this.opponent = (this.player === 'Dark') ? 'Light' : 'Dark';
+		document.getElementById("restart").style.visibility = 'visible';
 		Othello.displayDiscs();
 	},
 
@@ -180,6 +184,7 @@ const Othello = {
 			turnDisc.setAttribute('src', '');
 			turnName.innerHTML = `Tie Game at ${lightTotal} apiece !!!`;
 		}
+		document.getElementById("restart").innerHTML="New Game";
 	}
 }
 
