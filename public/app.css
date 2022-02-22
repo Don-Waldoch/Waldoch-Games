@@ -10,6 +10,8 @@ body {
 
 img {
     max-width: 80%;
+    pointer-events: none;
+    user-select: none;
 }
 
 #restart {

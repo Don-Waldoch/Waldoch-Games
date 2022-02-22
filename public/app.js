@@ -38,7 +38,9 @@ window.onload = async () => {
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
 // https://stackoverflow.com/questions/1374126/how-to-extend-an-existing-javascript-array-with-another-array-without-creating/17368101#17368101
+
 Array.prototype.extend = function (other_array) {
     other_array.forEach(function(v) {this.push(v)}, this);
 }
@@ -52,6 +54,8 @@ class direction {
 		this.colIncr = colIncr;
 	}
 }
+
+/////////////////////////////////////////////////////////////////////
 
 const Othello = {
 	compass: [],
@@ -88,15 +92,15 @@ const Othello = {
 		}
 
 		// Place the first 4 discs needed for a new game
-		this.discs[3][3] = "Light";
+		this.discs[3][3] = 'Light';
 		this.discs[3][4] = 'Dark';
 		this.discs[4][3] = 'Dark';
-		this.discs[4][4] = "Light";
+		this.discs[4][4] = 'Light';
 
 		this.player = 'Dark';
 		this.opponent = 'Light';
-		document.getElementById("restart").innerHTML="Start Over";
-		document.getElementById("restart").style.visibility = 'hidden';
+		document.getElementById('restart').innerHTML='Start Over';
+		document.getElementById('restart').style.visibility = 'hidden';
 
 		// Display all of the placed discs on the game board
 		this.displayDiscs();
@@ -109,7 +113,7 @@ const Othello = {
 			for (let col=0; col<this.numCols; col++) {
 				let square = document.createElement('div');
 				square.setAttribute('id', `S${row}:${col}`);
-				square.setAttribute('class', "square");
+				square.setAttribute('class', 'square');
 				square.addEventListener('click', clickHandler);
 				board.append(square);
 
@@ -139,6 +143,13 @@ const Othello = {
 		return true;
 	},
 
+	changePlayer() {
+		this.player   = (this.player === 'Dark') ? 'Light' : 'Dark';
+		this.opponent = (this.player === 'Dark') ? 'Light' : 'Dark';
+		document.getElementById('restart').style.visibility = 'visible';
+		Othello.displayDiscs();
+	},
+
 	displayDiscs() {
 		for (let row=0; row<this.numRows; row++) {
 			for (let col=0; col<this.numCols; col++) {
@@ -155,13 +166,6 @@ const Othello = {
 		turnDisc.setAttribute('src', `./assets/${this.player}.png`);
 		turnName.innerHTML = `${this.player}'s Turn`;
 		if (DEBUG) console.table(this.discs);
-	},
-
-	changePlayer() {
-		this.player   = (this.player === 'Dark') ? 'Light' : 'Dark';
-		this.opponent = (this.player === 'Dark') ? 'Light' : 'Dark';
-		document.getElementById("restart").style.visibility = 'visible';
-		Othello.displayDiscs();
 	},
 
 	declareWinner() {
@@ -185,7 +189,7 @@ const Othello = {
 			turnDisc.setAttribute('src', '');
 			turnName.innerHTML = `Tie Game at ${lightTotal} apiece !!!`;
 		}
-		document.getElementById("restart").innerHTML="New Game";
+		document.getElementById('restart').innerHTML='New Game';
 	}
 }
 
@@ -212,9 +216,11 @@ function clickHandler(e) {
 
 			Othello.declareWinner(); // Nobody can move; Game Over; Declare winner!
 		}
-		if (DEBUG) console.log("Clicked square " + grid);
+		if (DEBUG) console.log('Clicked square ' + grid);
 	}
 }
+
+/////////////////////////////////////////////////////////////////////
 
 function legalMove(discRow, discCol) {
 	let status = false;
