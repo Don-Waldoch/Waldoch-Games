@@ -8,27 +8,11 @@ body {
     background-color: #9FFFFF;
 }
 
-img {
-    max-width: 80%;
-    pointer-events: none;
-    user-select: none;
-}
-
-#turnDisc {
-    max-height: 80%;
-}
-
-#restart {
-    border: 5px outset #9F0300;
-    border-radius: 10px;
-    background-color: #39D83C;
-    color: #03009F;
-    padding: 10px;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 20px;
-    font-weight: bold;
-    height: 100%;
-    width: 100%;
+.top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .board {
@@ -38,13 +22,23 @@ img {
     border: 10px outset #9F0300;
 }
 
-/* .nextZ {
+.square {
+    border: 2px inset #9F0300;
+    background-color: #009F03;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    gap: 23px;
-} */
+}
+
+img {
+    max-width: 80%;
+    pointer-events: none;
+    user-select: none;
+}
+
+#turnDisc {
+    max-height: 80%;
+}
 
 .status {
     display: flex;
@@ -83,6 +77,7 @@ img {
     font-weight: bold;
     padding: 10px;
 }
+
 .newGame {
     display: flex;
     flex-direction: row;
@@ -93,17 +88,15 @@ img {
     color: #03009F;
 }
 
-.square {
-    border: 2px inset #9F0300;
-    background-color: #009F03;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.top {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+#restart {
+    border: 5px outset #9F0300;
+    border-radius: 10px;
+    background-color: #39D83C;
+    color: #03009F;
+    padding: 10px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    height: 100%;
+    width: 100%;
 }
